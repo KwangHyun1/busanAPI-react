@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/busanAPI-react/static/css/main.85768c17.css",
+    "main.js": "/busanAPI-react/static/js/main.9fdfb59e.js",
+    "static/js/787.ad5b5d77.chunk.js": "/busanAPI-react/static/js/787.ad5b5d77.chunk.js",
+    "index.html": "/busanAPI-react/index.html",
+    "main.85768c17.css.map": "/busanAPI-react/static/css/main.85768c17.css.map",
+    "main.9fdfb59e.js.map": "/busanAPI-react/static/js/main.9fdfb59e.js.map",
+    "787.ad5b5d77.chunk.js.map": "/busanAPI-react/static/js/787.ad5b5d77.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.85768c17.css",
+    "static/js/main.9fdfb59e.js"
+  ]
+}
