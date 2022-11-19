@@ -22,13 +22,16 @@ const Main = () => {
     ) {
       pageNo = queryString.get("pageNo");
     }
+    if (pageNo <= 0) {
+      alert("첫번째 페이지입니다.");
+    }
     return pageNo;
   }, [search]);
 
   const getAttrs = () => {
     axios
       .get(
-        `https://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=L4O6Jd5locofQV0Sa674EwMQ4GyHi380DNlzkWVMQLw8O2LvzNMvBKe1RxTj4jssgmQKPrDvinJFtSOIs9KmbA%3D%3D&pageNo=${getPageNo}&numOfRows=10&resultType=json`
+        `https://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=eEolSlH5nQ5Z%2F3QO6SKZAvdw8U9IQSaigSfbVh3N0%2BeN8F%2BEgaNiE0R89sTeGvsnuW2tlDdetxeIUr24f8Jpiw%3D%3D&pageNo=${getPageNo}&numOfRows=10&resultType=json`
       )
       .then((response) => {
         console.log(response.data.getAttractionKr.item);
@@ -42,25 +45,50 @@ const Main = () => {
 
   useEffect(() => {
     getAttrs();
-  }, []);
+  }, [getPageNo]);
 
   return (
     <HeadLayout>
       <div>
         <div>메인페이지</div>
         <Container>
+          <Row>
+            <Col>
+              <Button
+                className="me-3"
+                variant="dark"
+                onClick={() => navigate(`/?pageNo=${parseInt(getPageNo) - 1}`)}
+              >
+                이전
+              </Button>
+              <Button
+                variant="dark"
+                onClick={() => navigate(`/?pageNo=${parseInt(getPageNo) + 1}`)}
+              >
+                다음
+              </Button>
+            </Col>
+            <Col></Col>
+          </Row>
           <Row className="row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4">
             {attrs.map((value, index) => {
               return (
                 <Col key={index}>
-                  <Card className= "mb-5">
+                  <Card className="mb-5">
                     <Card.Img variant="top" src={value.MAIN_IMG_THUMB} />
                     <Card.Body>
                       <Card.Title>{value.MAIN_TITLE}</Card.Title>
-                      <Card.Text style={{ height: "100px", overflow: "hidden"}}>
+                      <Card.Text
+                        style={{ height: "100px", overflow: "hidden" }}
+                      >
                         {value.ITEMCNTNTS}
                       </Card.Text>
-                      <Button variant="primary">Go somewhere</Button>
+                      <Button
+                        variant="primary"
+                        onClick={() => navigate(`/counter/${value.UC_SEQ}`)}
+                      >
+                        자세히 보기
+                      </Button>
                     </Card.Body>
                   </Card>
                 </Col>
